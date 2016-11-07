@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">courEsme</string>
     <string name="map_activity">MAP ACTIVITY</string>
+    <string name="ON">ON</string>
+    <string name="OFF">OFF</string>
+    <string name="SCAN">SCAN</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="LOGOFF">LOGOFF</string>
 
 </resources>

@@ -10,11 +10,62 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="fr.jnvui.couresme.MainActivity">
 
+    <Button
+        android:id="@+id/map_activity_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/map_activity"
+    />
+
+    <Button
+        android:id="@+id/buttonON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ON"
+        android:layout_below="@+id/map_activity_button"
+        />
+
+
+    <Button
+        android:id="@+id/buttonOFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/OFF"
+        android:layout_below="@id/buttonON"
+        />
+
+    <Button
+        android:id="@+id/buttonSCAN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SCAN"
+        android:layout_below="@id/buttonOFF"
+        />
+
+    <Button
+        android:id="@+id/buttonLOGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/LOGIN"
+        android:layout_below="@id/buttonSCAN"
+        />
+
+    <Button
+        android:id="@+id/buttonLOGOFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/LOGOFF"
+        android:layout_below="@id/buttonLOGIN"
+        />
+
+
+
     <TextView
         android:id="@+id/gps_position_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="..." />
+        android:text="..."
+        android:layout_below="@+id/buttonLOGOFF"/>
 
     <TextView
         android:id="@+id/nearestPOI_textview"
@@ -33,13 +84,6 @@
         android:text="..."
 
         android:layout_below="@+id/nearestPOI_textview"/>
-
-    <Button
-        android:id="@+id/map_activity_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:text="@string/map_activity"/>
 
 
 

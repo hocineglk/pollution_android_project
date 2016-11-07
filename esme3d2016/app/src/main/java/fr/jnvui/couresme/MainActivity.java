@@ -32,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
     TextView mNearestPOITextView;
     Button mMapActivityButton;
 
+
+    Button mON;
+    Button mOFF;
+    Button mSCAN;
+    Button mLOGIN;
+    Button mLOGOFF;
+
     //------DATA
     IGPSData myPositionGPSData;
 
@@ -63,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         mListPOITextView = (TextView) findViewById(R.id.listPOI_textview);
         mNearestPOITextView = (TextView) findViewById(R.id.nearestPOI_textview);
         mMapActivityButton = (Button) findViewById(R.id.map_activity_button);
+        mON = (Button) findViewById(R.id.buttonON);
+        mOFF = (Button) findViewById(R.id.buttonOFF);
+        mSCAN = (Button) findViewById(R.id.buttonSCAN);
+        mLOGIN = (Button) findViewById(R.id.buttonLOGIN);
+        mLOGOFF = (Button) findViewById(R.id.buttonLOGOFF);
 
         mMapActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
