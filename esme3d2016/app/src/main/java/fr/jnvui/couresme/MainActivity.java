@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             Location location = myPositionGPSData.getPosition();
             mPositionGPSTextView.setText("Longitude="+location.getLongitude()+"\nLatitude ="+location.getLatitude());
 
-            mListPOITextView.setText(getListPOI(mIListPOIs.getPOIs()));
+            //mListPOITextView.setText(getListPOI(mIListPOIs.getPOIs()));
 
-            mNearestPOITextView.setText(findNearestPOI(location,mIListPOIs.getPOIs()).getmName());
+            //mNearestPOITextView.setText(findNearestPOI(location,mIListPOIs.getPOIs()).getmName());
 
             mHandler.postDelayed(this,1000);
         }
@@ -70,11 +70,13 @@ public class MainActivity extends AppCompatActivity {
         mListPOITextView = (TextView) findViewById(R.id.listPOI_textview);
         mNearestPOITextView = (TextView) findViewById(R.id.nearestPOI_textview);
         mMapActivityButton = (Button) findViewById(R.id.map_activity_button);
+
         mON = (Button) findViewById(R.id.buttonON);
         mOFF = (Button) findViewById(R.id.buttonOFF);
         mSCAN = (Button) findViewById(R.id.buttonSCAN);
         mLOGIN = (Button) findViewById(R.id.buttonLOGIN);
         mLOGOFF = (Button) findViewById(R.id.buttonLOGOFF);
+
 
         mMapActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        mHandler.post(mUIRunnable);
+        mHandler.postDelayed(mUIRunnable,1000);
     }
 
     @Override

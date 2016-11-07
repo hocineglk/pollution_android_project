@@ -45,7 +45,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     Marker mPosition;
     Marker mNearestPOI;
-    MarkerOptions mPositionMarker = new MarkerOptions().title("MyPostion");
+    MarkerOptions mPositionMarker = new MarkerOptions().title("MyPosition");
     POI poiNearest;
 
     Runnable mUIRunnable = new Runnable() {
@@ -56,11 +56,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             LatLng myPosition = new LatLng(location.getLatitude(), location.getLongitude());
 
-
-
             if(mMap != null){
 
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 5f));
+
 
                 if(mPosition != null){
                     mPosition.remove();
@@ -72,10 +70,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 // Add a marker in Sydney and move the camera
                 mPosition = mMap.addMarker(mPositionMarker);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(myPosition));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 14f));
 
 
                 //Show nearest POI
-                POI poi = findNearestPOI(location,mIListPOIs.getPOIs());
+                POI poi = null;//findNearestPOI(location,mIListPOIs.getPOIs());
 
                 if(poi == poiNearest){
 
@@ -93,12 +92,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                     poiNearest = poi;
                 }
-
-
-
             }
-
-            mHandler.postDelayed(this,1000/60);
+            mHandler.postDelayed(this,1000);
         }
     };
 
@@ -114,8 +109,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         mapFragment.getMapAsync(this);
         mHandler = new Handler(Looper.getMainLooper());
-
-
     }
 
 
@@ -127,19 +120,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         //Start Walking guy
         myPositionGPSData = new GPSData();
         mIListPOIs = new ListPOIs();
-
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        setListPOIOnMap(mIListPOIs.getPOIs());
-
-        mHandler.post(mUIRunnable);
-
-
-
+        mHandler.postDelayed(mUIRunnable,100);
     }
 
     void setListPOIOnMap(HashMap<String, POI> poiHashMap){
@@ -148,9 +129,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         for (Map.Entry<String, POI> entry : stringPOIHashMap.entrySet())
         {
-
             LatLng latLng =  new LatLng(entry.getValue().getmLocation().getLatitude(),
-                entry.getValue().getmLocation().getLongitude());
+                    entry.getValue().getmLocation().getLongitude());
 
             //fill map
             mMap.addMarker(new MarkerOptions().position(latLng).title(entry.getKey()));
