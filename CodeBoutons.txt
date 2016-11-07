@@ -1,0 +1,149 @@
+activity_main.xml
+
+<Button
+    android:id="@+id/buttonON"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/ON"
+    android:layout_alignParentTop="true"
+    />
+
+
+<Button
+    android:id="@+id/buttonOFF"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/OFF"
+    android:layout_toRightOf="@id/buttonON"
+    />
+
+<Button
+    android:id="@+id/buttonSCAN"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/SCAN"
+    android:layout_below="@id/buttonON"
+    />
+
+<Button
+    android:id="@+id/buttonLOGIN"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/LOGIN"
+    android:layout_below="@id/buttonSCAN"
+    />
+
+<Button
+    android:id="@+id/buttonLOGOFF"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/LOGOFF"
+    android:layout_below="@id/buttonLOGIN"
+    />
+
+<Button
+    android:id="@+id/buttonMAP"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/MAP"
+    android:layout_below="@id/buttonLOGOFF"
+    />
+
+
+
+
+
+
+
+
+strings.xml
+
+<resources>
+    <string name="ON">ON</string>
+    <string name="OFF">OFF</string>
+    <string name="SCAN">SCAN</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="LOGOFF">LOGOFF</string>
+    <string name="MAP">MAP</string>
+</resources>
+
+
+
+
+
+
+
+
+activity_main.java
+
+
+public class MainActivity extends AppCompatActivity {
+
+    private String TAG = "MainActivity";
+
+    Button mON;
+    Button mOFF;
+    Button mSCAN;
+    Button mLOGIN;
+    Button mLOGOFF;
+    Button mMAP;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mButton = (Button) findViewById(R.id.buttonON);
+        mButton = (Button) findViewById(R.id.buttonOFF);
+        mButton = (Button) findViewById(R.id.buttonSCAN);
+        mButton = (Button) findViewById(R.id.buttonLOGIN);
+        mButton = (Button) findViewById(R.id.buttonLOGOFF);
+        mButton = (Button) findViewById(R.id.buttonMAP);
+
+
+        Log.d(TAG,"OnCreate()");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.d(TAG,"OnStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG,"OnResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d(TAG,"OnPause()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.d(TAG,"OnStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Log.d(TAG,"OnDestroy()");
+    }
+
+
+
+
+}
+
+
