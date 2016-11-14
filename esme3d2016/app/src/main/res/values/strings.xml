@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">courEsme</string>
+    <string name="map_activity">MAP ACTIVITY</string>
+<<<<<<< HEAD
+=======
+    <string name="SCAN">SCAN</string>
+>>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373
+
+</resources>
