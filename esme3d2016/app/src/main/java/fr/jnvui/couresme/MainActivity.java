@@ -3,21 +3,16 @@ package fr.jnvui.couresme;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
->>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-<<<<<<< HEAD
-=======
 import android.widget.ListView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -31,16 +26,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
->>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373
 
 import fr.jnvui.couresme.activities.MapActivity;
+import fr.jnvui.couresme.data.GPSData;
+import fr.jnvui.couresme.data.ListPOIs;
+import fr.jnvui.couresme.data.POI;
+import fr.jnvui.couresme.interfaces.IGPSData;
+import fr.jnvui.couresme.interfaces.IListPOIs;
 
-<<<<<<< HEAD
-public class MainActivity extends AppCompatActivity {
+import static fr.jnvui.couresme.SearchPOI.findNearestPOI;
 
-    Button mMapActivityButton;
-
-=======
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     //------HANDLER
     Handler mHandler;
@@ -89,15 +84,15 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     };
 
 
->>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mPositionGPSTextView = (TextView) findViewById(R.id.gps_position_textview);
+        mListPOITextView = (TextView) findViewById(R.id.listPOI_textview);
+        mNearestPOITextView = (TextView) findViewById(R.id.nearestPOI_textview);
         mMapActivityButton = (Button) findViewById(R.id.map_activity_button);
-<<<<<<< HEAD
-=======
         b2=(Button)findViewById(R.id.button2);
         b3=(Button)findViewById(R.id.button3);
 
@@ -140,15 +135,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 changeStatus.setText("Switch ON Bluetooth");
             }
         }
->>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373
 
         mMapActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent mapActivityIntent = new Intent(getApplicationContext(), MapActivity.class);
-            startActivity(mapActivityIntent);
+
+                Intent mapActivityIntent = new Intent(getApplicationContext(), MapActivity.class);
+                startActivity(mapActivityIntent);
             }
         });
+
+
+        myPositionGPSData = new GPSData();
+        mIListPOIs = new ListPOIs();
+
+        mHandler = new Handler(Looper.getMainLooper());
+
     }
 
 
@@ -199,6 +201,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+
+        mHandler.postDelayed(mUIRunnable,1000);
     }
 
     @Override
@@ -221,9 +225,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onDestroy();
     }
 
-<<<<<<< HEAD
-}
-=======
     String getListPOI(HashMap<String, POI> poiHashMap){
 
         HashMap<String,POI> stringPOIHashMap = poiHashMap;
@@ -295,4 +296,3 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
 }
->>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373

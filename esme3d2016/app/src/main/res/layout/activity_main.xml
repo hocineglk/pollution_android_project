@@ -15,11 +15,6 @@
         android:id="@+id/gps_position_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:layout_alignParentBottom="true"
-        android:text="@string/map_activity"/>
-
-=======
         android:text="..."
         android:layout_below="@+id/buttonLOGOFF"/>
 
@@ -114,7 +109,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
->>>>>>> 0d7444706e33566bd2a3206981e2484eae9c1373
 
 
 </RelativeLayout>
