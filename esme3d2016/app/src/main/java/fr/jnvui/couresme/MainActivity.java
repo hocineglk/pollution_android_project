@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.StringRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,35 +14,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.view.Menu;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import fr.jnvui.couresme.activities.MapActivity;
-import fr.jnvui.couresme.data.GPSData;
-import fr.jnvui.couresme.data.ListPOIs;
-import fr.jnvui.couresme.data.POI;
 import fr.jnvui.couresme.interfaces.IGPSData;
 import fr.jnvui.couresme.interfaces.IListPOIs;
-
-import static fr.jnvui.couresme.SearchPOI.findNearestPOI;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     //------HANDLER
     Handler mHandler;
 
     //-------TEXTVIEW
-    TextView mPositionGPSTextView;
-    TextView mListPOITextView;
-    TextView mNearestPOITextView;
+
     TextView status;
 
     private BluetoothAdapter BA;
@@ -62,22 +49,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     //------BLUETOOTH
     BluetoothAdapter mBluetoothAdapter;
 
-    //------DATA
-    IGPSData myPositionGPSData;
-
-    //------POI
-    IListPOIs mIListPOIs;
 
     Runnable mUIRunnable = new Runnable() {
         @Override
         public void run() {
-
-            Location location = myPositionGPSData.getPosition();
-            mPositionGPSTextView.setText("Longitude="+location.getLongitude()+"\nLatitude ="+location.getLatitude());
-
-            //mListPOITextView.setText(getListPOI(mIListPOIs.getPOIs()));
-
-            //mNearestPOITextView.setText(findNearestPOI(location,mIListPOIs.getPOIs()).getmName());
 
             mHandler.postDelayed(this,1000);
         }
@@ -89,9 +64,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mPositionGPSTextView = (TextView) findViewById(R.id.gps_position_textview);
-        mListPOITextView = (TextView) findViewById(R.id.listPOI_textview);
-        mNearestPOITextView = (TextView) findViewById(R.id.nearestPOI_textview);
         mMapActivityButton = (Button) findViewById(R.id.map_activity_button);
         b2=(Button)findViewById(R.id.button2);
         b3=(Button)findViewById(R.id.button3);
@@ -145,9 +117,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
         });
 
-
-        myPositionGPSData = new GPSData();
-        mIListPOIs = new ListPOIs();
 
         mHandler = new Handler(Looper.getMainLooper());
 
@@ -225,20 +194,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onDestroy();
     }
 
-    String getListPOI(HashMap<String, POI> poiHashMap){
-
-        HashMap<String,POI> stringPOIHashMap = poiHashMap;
-        String result = "";
-
-        for (Map.Entry<String, POI> entry : stringPOIHashMap.entrySet())
-        {
-            result = result + "\n" + entry.getValue().getmName()
-                    + "  Lg=" + entry.getValue().getmLocation().getLongitude()
-                    + "  La=" + entry.getValue().getmLocation().getLatitude();
-        }
-
-        return result;
-    }
     @Override
     public void onClick(View v) {
 

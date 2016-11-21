@@ -11,31 +11,6 @@
     tools:context="fr.jnvui.couresme.MainActivity">
 
 
-    <TextView
-        android:id="@+id/gps_position_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:layout_below="@+id/buttonLOGOFF"/>
-
-    <TextView
-        android:id="@+id/nearestPOI_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textColor="@android:color/holo_green_light"
-
-        android:layout_below="@+id/gps_position_textview"/>
-
-
-    <TextView
-        android:id="@+id/listPOI_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="..."
-
-        android:layout_below="@+id/nearestPOI_textview"/>
-
     <Button android:id="@+id/changeStatus" style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent" android:layout_height="wrap_content"
         android:text="Switch ON Bluetooth"
@@ -64,9 +39,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp"
-        android:layout_below="@+id/changeStatus"
-        android:layout_toRightOf="@+id/listPOI_textview"
-        android:layout_toEndOf="@+id/listPOI_textview" />
+        android:layout_below="@+id/changeStatus" />
 
     <Button
         android:layout_width="wrap_content"
