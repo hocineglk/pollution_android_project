@@ -12,28 +12,36 @@ public class Capteur implements ICapteur{
 
     public Capteur(){
 
-
     }
 
     @Override
     public int getCapteur() {
 
         Random rand = new Random();
-        return rand.nextInt(3);
+        return rand.nextInt(6);
     }
 
     public static int convertACToColor(int ACvalue){
 
-        int color = 0x90FFFFFF;
+        int color = 0xAAFFFFFF;
 
         if (ACvalue==0) {
-            color = 0x90FF0000;
+            color = 0xAA008000;
         }
         else if (ACvalue==1){
-            color = 0x90008000;
+            color = 0xAA99FF99;
         }
         else if (ACvalue==2){
-            color = 0x90FFFF00;
+            color = 0xAAFFFF00;
+        }
+        else if (ACvalue==3){
+            color = 0xAAFF9933;
+        }
+        else if (ACvalue==4){
+            color = 0xAAFF6600;
+        }
+        else if (ACvalue==5){
+            color = 0xAAFF0000;
         }
 
         return color;

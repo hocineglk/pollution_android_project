@@ -3,7 +3,6 @@ package fr.jnvui.couresme;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AlertDialog;
@@ -22,11 +21,9 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import fr.jnvui.couresme.activities.MapActivity;
-import fr.jnvui.couresme.interfaces.IGPSData;
-import fr.jnvui.couresme.interfaces.IListPOIs;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
-    //------HANDLER
+    //-------HANDLER
     Handler mHandler;
 
     //-------TEXTVIEW
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     private BluetoothAdapter BA;
     private Set<BluetoothDevice> pairedDevices;
 
-    //--------BOUTONS
+    //-------BOUTONS
     Button b2,b3;
 
     //-------ListView
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         //reference to the text view BLE
         status = (TextView) findViewById(R.id.status);
 
-//reference to the bluetooth adapter
+        //reference to the bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         //check if adatpter is available, please note if you running
         //this application in emulator currently there is no support for bluetooth
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
-        //check the status and set the button text accordingly
+        // Check the status and set the button text accordingly
         else {
             if (mBluetoothAdapter.isEnabled()) {
                 status.setText("BlueTooth is currently switched ON");
@@ -108,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
         }
 
+        //When user click on "MapActivity button"
         mMapActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,11 +114,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
         });
 
-
         mHandler = new Handler(Looper.getMainLooper());
-
     }
-
 
     public  void visible(View v){
         if (mBluetoothAdapter.isEnabled()) {
@@ -141,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     .show();
         }
     }
-
 
     public void list(View v){
         pairedDevices = BA.getBondedDevices();

@@ -1,6 +1,5 @@
 package fr.jnvui.couresme.activities;
 
-import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,20 +17,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 import fr.jnvui.couresme.R;
 import fr.jnvui.couresme.data.GPSData;
-import fr.jnvui.couresme.data.ListPOIs;
-import fr.jnvui.couresme.data.POI;
 import fr.jnvui.couresme.interfaces.IGPSData;
-import fr.jnvui.couresme.interfaces.IListPOIs;
 
 import fr.jnvui.couresme.interfaces.ICapteur;
 import fr.jnvui.couresme.data.Capteur;
-
 
 /**
  * Created by jips on 10/24/16.
@@ -45,8 +36,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     ICapteur myValueCapteur;
     //------DATA
     IGPSData myPositionGPSData;
-    //------POI
-    IListPOIs mIListPOIs;
 
     Marker mPosition;
     MarkerOptions mPositionMarker = new MarkerOptions().title("MyPosition");
@@ -70,9 +59,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 mPositionMarker.position(myPosition);
                 mPositionMarker.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher));
 
-                // Add a marker in Sydney and move the camera
+                // Add a marker on our position
                 mPosition = mMap.addMarker(mPositionMarker);
+                // Move camera
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(myPosition));
+                // Zoom
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition, 13f));
 
                 CircleOptions circleOptions = new CircleOptions()
@@ -81,7 +72,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                         .fillColor(Capteur.convertACToColor(value))
                         .radius(500); // In meters
 
-                // Get back the mutable Circle
                 Circle circle = mMap.addCircle(circleOptions);
             }
             mHandler.postDelayed(this, 1000);
@@ -106,28 +96,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         this.mMap = googleMap;
 
-        //Start Walking guy
         myPositionGPSData = new GPSData();
-        mIListPOIs = new ListPOIs();
 
         myValueCapteur = new Capteur();
-
-        setListPOIOnMap(mIListPOIs.getPOIs());
 
         myPositionGPSData.startThread();
 
         mHandler.postDelayed(mUIRunnable,100);
-    }
-
-    void setListPOIOnMap(HashMap<String, POI> poiHashMap){
-        HashMap<String,POI> stringPOIHashMap = poiHashMap;
-
-        for (Map.Entry<String, POI> entry : stringPOIHashMap.entrySet())
-        {
-            LatLng latLng =  new LatLng(entry.getValue().getmLocation().getLatitude(),
-                    entry.getValue().getmLocation().getLongitude());
-
-            mMap.addMarker(new MarkerOptions().position(latLng).title(entry.getKey()));
-        }
     }
 }
